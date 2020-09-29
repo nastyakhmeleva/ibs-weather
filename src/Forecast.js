@@ -1,4 +1,5 @@
 import React from 'react';
+import './Forecast.css';
 
 class Forecast extends React.Component {
     constructor(props) {
@@ -18,11 +19,11 @@ class Forecast extends React.Component {
     getForecast(e) {
         e.preventDefault();
         const uriEncodedCity = encodeURIComponent(this.state.city);
-        fetch(`https://community-open-weather-map.p.rapidapi.com/weather?lang=ru&units=metric&q=${uriEncodedCity}`, {
+        fetch(`https://community-open-weather-map.p.rapidapi.com/forecast?lang=ru&units=metric&q=${uriEncodedCity}`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-                "x-rapidapi-key": "926a7c02a3msha1dbb41886930d3p13535ejsn800e78e46440"
+                "x-rapidapi-key": process.env.REACT_APP_API_KEY
             }
         })
             .then(response => response.json())
@@ -40,22 +41,43 @@ class Forecast extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="forecast">
                 <div className='search'>
                     <form onSubmit={this.getForecast}>
                         <input
                             type="text"
-                            placeholder="Enter City"
+                            placeholder="Город"
                             maxLength="50"
                             value={this.state.city}
                             onChange={this.setCity}
                         />
-                        <button type="submit">Get Forecast</button>
+                        <button className='submit' type="submit">Получить прогноз погоды</button>
                     </form>
                 </div>
-                <div>
-                    <div className='card'>
-                        <div>Температура: {(this.state.data.main) ? this.state.data.main.temp : ''} °C</div>
+                <div className='days'>
+                    <div className='today'>
+                        <div className='card'>
+                            <div>Температура: {(this.state.data.list) ? this.state.data.list[0].main.temp : ''} °C</div>
+                            <div>Влажность: {(this.state.data.list) ? this.state.data.list[0].main.humidity : ''} %</div>
+                            <div>Давление: {(this.state.data.list) ? this.state.data.list[0].main.pressure : ''} мм
+                                рт.ст.
+                            </div>
+                            <div>{(this.state.data.list) ? this.state.data.list[0].weather[0].description : ''}</div>
+                            <div>Ветер: {(this.state.data.list) ? this.state.data.list[0].wind.speed : ''} м/с</div>
+                        </div>
+                        <div id='city'>Сегодня</div>
+                    </div>
+                    <div className='tomorrow'>
+                        <div className='card'>
+                            <div>Температура: {(this.state.data.list) ? this.state.data.list[8].main.temp : ''} °C</div>
+                            <div>Влажность: {(this.state.data.list) ? this.state.data.list[8].main.humidity : ''} %</div>
+                            <div>Давление: {(this.state.data.list) ? this.state.data.list[8].main.pressure : ''} мм
+                                рт.ст.
+                            </div>
+                            <div>{(this.state.data.list) ? this.state.data.list[8].weather[0].description : ''}</div>
+                            <div>Ветер: {(this.state.data.list) ? this.state.data.list[8].wind.speed : ''} м/с</div>
+                        </div>
+                        <div id='city'>Завтра</div>
                     </div>
                 </div>
             </div>

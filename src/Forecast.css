@@ -1,0 +1,64 @@
+input {
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin: 0 auto;
+}
+
+button.submit {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    user-select: none;
+    background: #5D8AA8;
+    padding: .7em 1.5em;
+    outline: none;
+    border: none;
+    display: block;
+    margin: 5px auto 0 auto;
+}
+button.submit:hover { background: #5D8AB8; } /* при наведении курсора мышки */
+button.submit:active { background: #5D8ABD; } /* при нажатии */
+
+.today {
+    float:left;
+    margin: 20px;
+    padding: 10px;
+    width: 220px;
+    height: 250px;
+
+    border: 1px solid #5D8AA8;
+    background: white;
+}
+
+.tomorrow {
+    float:left;
+    margin: 20px;
+    padding: 10px;
+    width: 220px;
+    height: 250px;
+
+    border: 1px solid #5D8AA8;
+    background: white;
+}
+
+#city{
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.card {
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+
+    color: white;
+    font-family: Helvetica, sans-serif;
+    line-height: 2;
+
+    background: #5D8AA8;
+}
