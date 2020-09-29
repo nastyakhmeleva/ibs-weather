@@ -20,8 +20,8 @@ button.submit {
     display: block;
     margin: 5px auto 0 auto;
 }
-button.submit:hover { background: #5D8AB8; } /* при наведении курсора мышки */
-button.submit:active { background: #5D8ABD; } /* при нажатии */
+button.submit:hover { background: #5D8AB8; }
+button.submit:active { background: #5D8ABD; }
 
 .today {
     float:left;
